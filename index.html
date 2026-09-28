@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LangOsta · Portafolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           🦞 LANGOSTA HUB — Paleta oficial
+           ============================================ */
+        :root {
+            --bg-0: #0a0605;
+            --bg-1: #140a08;
+            --text: #fff5ed;
+            --text-muted: #a88978;
+
+            --accent-1: #ff6b1a;    /* Naranja Langosta */
+            --accent-2: #2c5cd6;    /* Azul Dev */
+            --accent-3: #c9a227;    /* Dorado */
+            --accent-4: #4ade80;    /* Verde técnico */
+
+            --card-bg: color-mix(in srgb, var(--bg-1) 85%, transparent);
+            --card-border: color-mix(in srgb, var(--accent-1) 22%, transparent);
+
+            --a1-08: color-mix(in srgb, var(--accent-1) 8%, transparent);
+            --a1-12: color-mix(in srgb, var(--accent-1) 12%, transparent);
+            --a1-15: color-mix(in srgb, var(--accent-1) 15%, transparent);
+            --a1-20: color-mix(in srgb, var(--accent-1) 20%, transparent);
+            --a1-30: color-mix(in srgb, var(--accent-1) 30%, transparent);
+            --a1-35: color-mix(in srgb, var(--accent-1) 35%, transparent);
+            --a1-50: color-mix(in srgb, var(--accent-1) 50%, transparent);
+            --a1-70: color-mix(in srgb, var(--accent-1) 70%, transparent);
+
+            --a2-12: color-mix(in srgb, var(--accent-2) 12%, transparent);
+            --a2-35: color-mix(in srgb, var(--accent-2) 35%, transparent);
+            --a2-70: color-mix(in srgb, var(--accent-2) 70%, transparent);
+
+            --a3-10: color-mix(in srgb, var(--accent-3) 10%, transparent);
+            --a3-35: color-mix(in srgb, var(--accent-3) 35%, transparent);
+            --a3-70: color-mix(in srgb, var(--accent-3) 70%, transparent);
+
+            --a4-10: color-mix(in srgb, var(--accent-4) 10%, transparent);
+            --a4-35: color-mix(in srgb, var(--accent-4) 35%, transparent);
+
+            --text-05: color-mix(in srgb, var(--text) 5%, transparent);
+            --text-10: color-mix(in srgb, var(--text) 10%, transparent);
+            --text-60: color-mix(in srgb, var(--text) 60%, transparent);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-0);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: none;
+            position: relative;
+        }
+
+        /* ========== FONDO ========== */
+        .bg-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+            background:
+                radial-gradient(ellipse at 15% 0%, var(--a1-15), transparent 50%),
+                radial-gradient(ellipse at 85% 100%, var(--a2-12), transparent 50%),
+                radial-gradient(ellipse at 50% 50%, var(--a3-10), transparent 60%),
+                var(--bg-0);
+        }
+
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-image:
+                linear-gradient(var(--a1-08) 1px, transparent 1px),
+                linear-gradient(90deg, var(--a2-12) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+            animation: gridShift 30s linear infinite;
+        }
+
+        @keyframes gridShift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(130px);
+            opacity: 0.35;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .blob-1 {
+            width: 520px; height: 520px;
+            background: var(--accent-1);
+            top: -150px; left: -100px;
+            animation: float1 20s ease-in-out infinite;
+        }
+
+        .blob-2 {
+            width: 420px; height: 420px;
+            background: var(--accent-2);
+            bottom: -100px; right: -100px;
+            animation: float2 25s ease-in-out infinite;
+        }
+
+        .blob-3 {
+            width: 380px; height: 380px;
+            background: var(--accent-3);
+            top: 45%; left: 50%;
+            opacity: 0.2;
+            animation: float3 22s ease-in-out infinite;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, 80px) scale(1.2); }
+        }
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-120px, -60px) scale(1.15); }
+        }
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-80px, 100px) scale(0.9); }
+        }
+
+        .noise {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ========== CURSOR ========== */
+        .cursor-dot,
+        .cursor-ring {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            top: 0; left: 0;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-dot {
+            width: 8px; height: 8px;
+            background: var(--text);
+            transition: transform 0.05s ease;
+        }
+
+        .cursor-ring {
+            width: 40px; height: 40px;
+            border: 1.5px solid var(--text-60);
+            transition: transform 0.15s ease, width 0.25s ease, height 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .cursor-ring.hover {
+            width: 70px; height: 70px;
+            border-color: var(--accent-1);
+            background: var(--a1-12);
+        }
+
+        @media (hover: none) {
+            body { cursor: auto; }
+            .cursor-dot, .cursor-ring { display: none; }
+        }
+
+        /* ========== CONTAINER ========== */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            padding: 80px 0 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 100px;
+            background: var(--a1-08);
+            border: 1px solid var(--a1-35);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-1);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 28px;
+            animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+            box-shadow: 0 0 30px var(--a1-15), inset 0 0 20px var(--a1-08);
+        }
+
+        .badge::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--accent-4);
+            box-shadow: 0 0 10px var(--accent-4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
+
+        /* 🦞 LOGO */
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+        }
+
+        .lobster-mark {
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 30px var(--a1-50));
+            animation: lobsterBob 3s ease-in-out infinite;
+        }
+
+        @keyframes lobsterBob {
+            0%, 100% { transform: translateY(0) rotate(-4deg); }
+            50% { transform: translateY(-8px) rotate(4deg); }
+        }
+
+        .lobster-mark svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.8rem, 8vw, 5.5rem);
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            line-height: 0.9;
+            color: var(--text);
+            filter: drop-shadow(0 0 40px var(--a1-20));
+        }
+
+        .logo .accent {
+            display: inline-block;
+            background: linear-gradient(135deg,
+                var(--accent-1) 0%,
+                var(--accent-3) 50%,
+                var(--accent-2) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transform: rotate(-2deg) translateY(-2px);
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.6;
+            animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+
+        .subtitle .highlight {
+            color: var(--accent-1);
+            font-weight: 500;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .subtitle .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-3), var(--accent-2));
+            opacity: 0.35;
+            border-radius: 3px;
+            z-index: -1;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== STATS BAR ========== */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-1);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* ========== CONTROLES ========== */
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 40px;
+            animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+
+        .search-wrap {
+            position: relative;
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 18px 24px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--a1-20);
+            border-radius: 16px;
+            color: var(--text);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: var(--accent-1);
+            background: color-mix(in srgb, var(--bg-1) 90%, transparent);
+            box-shadow:
+                0 0 0 4px var(--a1-12),
+                0 20px 40px -10px var(--a1-35);
+            transform: translateY(-2px);
+        }
+
+        #searchInput::placeholder { color: var(--text-muted); }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--a1-15);
+            border-radius: 100px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .filter-btn:hover {
+            color: var(--text);
+            border-color: var(--a1-50);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            color: var(--bg-0);
+            border-color: transparent;
+            font-weight: 700;
+            box-shadow: 0 10px 30px -8px var(--a1-70);
+        }
+
+        .filter-btn.active::before { opacity: 1; }
+
+        /* ========== GRID ========== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 22px;
+            padding-bottom: 80px;
+            perspective: 1200px;
+        }
+
+        /* ========== CARD ========== */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 28px;
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.4s, box-shadow 0.4s;
+            opacity: 0;
+            animation: cardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 1px;
+            background: linear-gradient(135deg, var(--a1-70), var(--a3-70), var(--a2-70));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: var(--mouse-y, 50%);
+            left: var(--mouse-x, 50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--a1-20), transparent 60%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+            border-color: transparent;
+            box-shadow:
+                0 30px 60px -20px var(--a1-50),
+                0 0 60px -20px var(--a3-35);
+        }
+
+        .card:hover::before { opacity: 1; }
+        .card:hover::after { opacity: 1; }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: var(--a1-12);
+            border: 1px solid var(--a1-30);
+            color: var(--accent-1);
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(-6deg);
+            background: var(--a1-20);
+            box-shadow: 0 0 24px var(--a1-50);
+        }
+
+        .card-icon[data-cat="dev"],
+        .card-icon[data-cat="proyectos"] {
+            background: var(--a2-12);
+            border-color: var(--a2-35);
+            color: var(--accent-2);
+        }
+        .card:hover .card-icon[data-cat="dev"],
+        .card:hover .card-icon[data-cat="proyectos"] {
+            background: var(--a2-35);
+            box-shadow: 0 0 24px var(--a2-70);
+        }
+
+        .card-icon[data-cat="3d"],
+        .card-icon[data-cat="pixel"] {
+            background: var(--a4-10);
+            border-color: var(--a4-35);
+            color: var(--accent-4);
+        }
+        .card:hover .card-icon[data-cat="3d"],
+        .card:hover .card-icon[data-cat="pixel"] {
+            background: color-mix(in srgb, var(--accent-4) 30%, transparent);
+            box-shadow: 0 0 24px color-mix(in srgb, var(--accent-4) 60%, transparent);
+        }
+
+        .card-featured {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            color: var(--bg-0);
+            border-radius: 6px;
+            letter-spacing: 1px;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--text);
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            background: var(--a1-12);
+            color: var(--accent-1);
+            border: 1px solid var(--a1-30);
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .card-category[data-cat="dev"],
+        .card-category[data-cat="proyectos"] {
+            background: var(--a2-12);
+            color: var(--accent-2);
+            border-color: var(--a2-35);
+        }
+        .card-category[data-cat="3d"],
+        .card-category[data-cat="pixel"] {
+            background: var(--a4-10);
+            color: var(--accent-4);
+            border-color: var(--a4-35);
+        }
+
+        .card-arrow {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--text-05);
+            border: 1px solid var(--text-10);
+            color: var(--text-muted);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            font-size: 1rem;
+        }
+
+        .card:hover .card-arrow {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            color: var(--bg-0);
+            transform: rotate(-45deg) scale(1.1);
+            border-color: transparent;
+            box-shadow: 0 0 20px var(--a1-70);
+        }
+
+        .no-results {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 80px 20px;
+            font-size: 1.05rem;
+            display: none;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            padding: 40px 0 60px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            border-top: 1px solid var(--a1-15);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer .socials {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 100px;
+            background: var(--a1-08);
+            border: 1px solid var(--a1-20);
+            color: var(--accent-1);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .footer .social-link:hover {
+            background: var(--a1-15);
+            border-color: var(--a1-50);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--a1-35);
+        }
+
+        .footer .social-link svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        @media (max-width: 600px) {
+            .header { padding: 50px 0 40px; }
+            .grid { grid-template-columns: 1fr; }
+            .card { padding: 22px; }
+            .stats { gap: 24px; }
+            .lobster-mark { width: 60px; height: 60px; }
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-0); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-1), var(--accent-3));
+            border-radius: 10px;
+            border: 2px solid var(--bg-0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-layer"></div>
+    <div class="bg-grid"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="noise"></div>
+
+    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="badge">LangOsta · Portafolio</div>
+
+            <div class="logo-wrap">
+                <!-- 🦞 Langosta SVG -->
+                <div class="lobster-mark" aria-hidden="true">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="32" cy="38" rx="10" ry="14" fill="#ff6b1a" stroke="#c9a227" stroke-width="1.5"/>
+                        <ellipse cx="32" cy="26" rx="11" ry="8" fill="#ff7f2e" stroke="#c9a227" stroke-width="1.5"/>
+                        <path d="M 26 50 L 24 58 L 32 54 L 40 58 L 38 50 Z" fill="#e5560e" stroke="#c9a227" stroke-width="1.2" stroke-linejoin="round"/>
+                        <path d="M 22 22 Q 12 12 8 16 Q 10 22 16 24 Q 18 22 22 22 Z" fill="#ff6b1a" stroke="#c9a227" stroke-width="1.2" stroke-linejoin="round"/>
+                        <path d="M 42 22 Q 52 12 56 16 Q 54 22 48 24 Q 46 22 42 22 Z" fill="#ff6b1a" stroke="#c9a227" stroke-width="1.2" stroke-linejoin="round"/>
+                        <path d="M 26 20 Q 22 8 18 4" stroke="#c9a227" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                        <path d="M 38 20 Q 42 8 46 4" stroke="#c9a227" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                        <circle cx="28" cy="26" r="1.8" fill="#0a0605"/>
+                        <circle cx="36" cy="26" r="1.8" fill="#0a0605"/>
+                        <circle cx="28.5" cy="25.5" r="0.6" fill="#fff5ed"/>
+                        <circle cx="36.5" cy="25.5" r="0.6" fill="#fff5ed"/>
+                        <path d="M 22 40 L 16 46 M 22 44 L 16 50 M 42 40 L 48 46 M 42 44 L 48 50"
+                              stroke="#c9a227" stroke-width="1.4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h1 class="logo">
+                    Lang<span class="accent">Osta</span>
+                </h1>
+            </div>
+
+            <p class="subtitle">
+                Diseñador 3D, artista técnico y desarrollador.
+                <span class="highlight">Todos mis proyectos en un solo lugar.</span>
+            </p>
+
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-value" id="statTotal">0</span>
+                    <span class="stat-label">Proyectos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="statCategorias">0</span>
+                    <span class="stat-label">Áreas</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">v1.0</span>
+                    <span class="stat-label">LangOsta</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="controls">
+            <div class="search-wrap">
+                <input type="text" id="searchInput" placeholder="Buscar en el portafolio..." autocomplete="off">
+            </div>
+            <div class="filters" id="filters">
+                <button class="filter-btn active" data-category="all">Todas</button>
+                <button class="filter-btn" data-category="pixel">Pixel / Arcade</button>
+                <button class="filter-btn" data-category="dev">Dev</button>
+                <button class="filter-btn" data-category="3d">3D</button>
+            </div>
+        </div>
+
+        <div class="grid" id="grid"></div>
+
+        <p id="noResults" class="no-results">
+            No encontramos nada por aquí...
+        </p>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="socials">
+                <a href="https://www.instagram.com/langosta007/" target="_blank" rel="noopener" class="social-link">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+                    @langosta007
+                </a>
+                <a href="https://linktr.ee/LangOsta007" target="_blank" rel="noopener" class="social-link">
+                    <svg viewBox="0 0 24 24"><path d="M12 2v20M5 9l7-7 7 7M5 15l7 7 7-7"/></svg>
+                    Linktree
+                </a>
+                <a href="https://github.com/LangCarmine" target="_blank" rel="noopener" class="social-link">
+                    <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+            <p>© 2025 LANGOSTA · Hecho con código 🦞</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // 🦞 LANGOSTA HUB — Configuración de proyectos
+        // Categorías: pixel | dev | 3d
+        // ============================================
+        const paginas = [
+            {
+                titulo: "PixelForge Studio",
+                descripcion: "Estudio digital one-page con estética arcade. JavaScript modular, Web Audio API, Canvas 2D, sistema de logros, 4 temas y easter eggs.",
+                url: "https://langcarmine.github.io/PixelForge/",
+                categoria: "pixel",
+                icono: "gamepad",
+                destacado: true
+            },
+            {
+                titulo: "RestoPOS",
+                descripcion: "Sistema de punto de venta para restaurante con múltiples vistas (caja y cocina). Lógica de pedidos y gestión de estados en JavaScript.",
+                url: "https://langcarmine.github.io/RestoPOS/",
+                categoria: "dev",
+                icono: "box"
+            },
+            {
+                titulo: "Dashboard Aspersor",
+                descripcion: "Panel administrativo conectado a Unity. Visualiza datos de simulación de un aspersor móvil: humedad, sequedad y estado en tiempo real.",
+                url: "https://langcarmine.github.io/DashBoard/",
+                categoria: "dev",
+                icono: "chart"
+            },
+            {
+                titulo: "Incubadora Digital",
+                descripcion: "Ecosistema de innovación para emprendedores digitales con proyección regional. Programa oficial del Gobierno de Guanajuato.",
+                url: "https://langcarmine.github.io/INCUBADORA-DIGITAL/",
+                categoria: "dev",
+                icono: "layers"
+            }
+        ];
+
+        const ICONOS = {
+            gamepad: '<svg viewBox="0 0 24 24"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>',
+            code: '<svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+            chart: '<svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><polyline points="7 14 12 9 17 14 21 10"/></svg>',
+            layers: '<svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+            box: '<svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+            monitor: '<svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+            palette: '<svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>',
+            sprite: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="6"/><rect x="9" y="9" width="6" height="6"/><rect x="15" y="15" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/></svg>',
+            cpu: '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>',
+            terminal: '<svg viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>',
+            default: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>'
+        };
+
+        const grid = document.getElementById('grid');
+        const searchInput = document.getElementById('searchInput');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const noResults = document.getElementById('noResults');
+        const statTotal = document.getElementById('statTotal');
+        const statCategorias = document.getElementById('statCategorias');
+
+        let categoriaActual = 'all';
+        let busquedaActual = '';
+
+        statTotal.textContent = paginas.length;
+        statCategorias.textContent = [...new Set(paginas.map(p => p.categoria))].length;
+
+        function renderCards() {
+            const filtradas = paginas.filter(p => {
+                const coincideCategoria = categoriaActual === 'all' || p.categoria === categoriaActual;
+                const coincideBusqueda =
+                    p.titulo.toLowerCase().includes(busquedaActual) ||
+                    p.descripcion.toLowerCase().includes(busquedaActual);
+                return coincideCategoria && coincideBusqueda;
+            });
+
+            grid.innerHTML = '';
+
+            if (filtradas.length === 0) {
+                noResults.style.display = 'block';
+                return;
+            }
+
+            noResults.style.display = 'none';
+
+            filtradas.forEach((p, i) => {
+                const card = document.createElement('a');
+                card.className = 'card';
+                card.href = p.url;
+                card.target = '_blank';
+                card.rel = 'noopener noreferrer';
+                card.style.animationDelay = `${i * 0.06}s`;
+
+                const svg = ICONOS[p.icono] || ICONOS.default;
+
+                card.innerHTML = `
+                    ${p.destacado ? '<span class="card-featured">Featured</span>' : ''}
+                    <div class="card-icon" data-cat="${p.categoria}">${svg}</div>
+                    <h3 class="card-title">${p.titulo}</h3>
+                    <p class="card-description">${p.descripcion}</p>
+                    <div class="card-footer">
+                        <span class="card-category" data-cat="${p.categoria}">${p.categoria}</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                `;
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+                    card.style.setProperty('--mouse-x', `${x}%`);
+                    card.style.setProperty('--mouse-y', `${y}%`);
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            busquedaActual = e.target.value.toLowerCase().trim();
+            renderCards();
+        });
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                categoriaActual = btn.dataset.category;
+                renderCards();
+            });
+        });
+
+        const cursorDot = document.getElementById('cursorDot');
+        const cursorRing = document.getElementById('cursorRing');
+        let mouseX = 0, mouseY = 0;
+        let ringX = 0, ringY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+        });
+
+        function animateRing() {
+            ringX += (mouseX - ringX) * 0.15;
+            ringY += (mouseY - ringY) * 0.15;
+            cursorRing.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`;
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest('a, button, input')) {
+                cursorRing.classList.add('hover');
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest('a, button, input')) {
+                cursorRing.classList.remove('hover');
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 30;
+            const y = (e.clientY / window.innerHeight - 0.5) * 30;
+            document.querySelectorAll('.blob').forEach((blob, i) => {
+                const factor = (i + 1) * 0.5;
+                blob.style.marginLeft = `${x * factor}px`;
+                blob.style.marginTop = `${y * factor}px`;
+            });
+        });
+
+        renderCards();
+    </script>
+</body>
+</html>
